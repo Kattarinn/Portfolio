@@ -1,695 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kattarin Chaisutthisunthon - Frontend Developer & UI/UX Designer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #ffffff;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #14b8a6;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #14b8a6;
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .mobile-menu span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 100%);
-            padding-top: 80px;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #1f2937;
-        }
-
-        .hero-text .title {
-            font-size: 1.5rem;
-            color: #14b8a6;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .hero-image {
-            text-align: center;
-        }
-
-        .hero-image img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 20px 40px rgba(20, 184, 166, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-image img:hover {
-            transform: scale(1.05);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #14b8a6;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
-        }
-
-        .cta-button:hover {
-            background: #0f766e;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: #1f2937;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: #14b8a6;
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about {
-            background: #f9fafb;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            font-size: 1.1rem;
-            color: #6b7280;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .university-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .university-info img {
-            height: 40px;
-        }
-
-        .university-info span {
-            font-weight: 600;
-            color: #1f2937;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .skill-category {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
-
-        .skill-category h3 {
-            color: #14b8a6;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .skill-category p {
-            color: #6b7280;
-            line-height: 1.6;
-        }
-
-        /* Projects Section */
-        .projects {
-            background: #f9fafb;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-image {
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #1f2937;
-        }
-
-        .project-role {
-            color: #14b8a6;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .project-content p {
-            color: #6b7280;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            padding: 8px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .github-link {
-            background: #f3f4f6;
-            color: #374151;
-        }
-
-        .github-link:hover {
-            background: #374151;
-            color: white;
-        }
-
-        .demo-link {
-            background: #14b8a6;
-            color: white;
-        }
-
-        .demo-link:hover {
-            background: #0f766e;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .contact-item h3 {
-            color: #14b8a6;
-            margin-bottom: 1rem;
-        }
-
-        .contact-item a {
-            color: #6b7280;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: #14b8a6;
-        }
-
-        /* Footer */
-        footer {
-            background: #1f2937;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-image img {
-                width: 250px;
-                height: 250px;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .university-info {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Animation classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kattarin — Frontend • UI/UX • Design</title>
+  <meta name="description" content="Portfolio of Kattarin — frontend development, UI/UX design, and graphic branding for food & café." />
+  <style>
+    :root{
+      --bg:#fafaf8;        /* soft paper */
+      --surface:#ffffff;
+      --ink:#1f2937;       /* slate-800 */
+      --muted:#64748b;     /* slate-500 */
+      --brand:#22c55e;     /* matcha green */
+      --brand-dark:#16a34a;
+      --line:#e5e7eb;
+      --shadow:0 12px 32px rgba(2,6,23,.06);
+      --radius:16px;
+      --space:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    img{max-width:100%;display:block}
+
+    /* layout */
+    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid var(--line);z-index:50}
+    .nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:800;letter-spacing:.2px}
+    .logo .dot{color:var(--brand)}
+    .nav a{color:#0f172a}
+    .links{display:flex;gap:18px;flex-wrap:wrap}
+    .links a{padding:8px 10px;border-radius:10px}
+    .links a:hover{background:#f1f5f9}
+    main{padding:44px 0}
+    section{margin:0 0 56px}
+
+    /* hero */
+    .hero{display:grid;gap:28px;grid-template-columns:1.15fr .85fr;align-items:center}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(18px,3.2vw,28px)}
+    h1{font-size:clamp(30px,5.2vw,44px);line-height:1.1;margin:0 0 6px}
+    p.lead{color:var(--muted);margin:8px 0 16px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+    .btn{display:inline-block;padding:11px 18px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#0f172a}
+    .btn.primary{background:var(--brand);border-color:transparent;color:#fff}
+    .btn.primary:hover{background:var(--brand-dark)}
+    .portrait{aspect-ratio:1/1;border-radius:16px;border:1px solid var(--line);background:linear-gradient(135deg,#ecfdf5,#fff);display:flex;align-items:center;justify-content:center}
+    .portrait img{width:84%;height:84%;object-fit:cover;border-radius:50%;box-shadow:0 18px 40px rgba(34,197,94,.22)}
+
+    /* section titles */
+    h2{font-size:clamp(22px,3.6vw,30px);margin:0 0 12px}
+    .subtitle{color:var(--muted);margin:-6px 0 18px}
+
+    /* skills */
+    .skills{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr))}
+    .skill{border:1px solid var(--line);border-radius:14px;background:#fff;padding:18px}
+    .skill h3{margin:0 0 8px;font-size:18px;color:#065f46}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{font-size:13px;border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#fff;color:#111827}
+
+    /* projects */
+    .grid{display:grid;gap:22px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .project .thumb{aspect-ratio:16/10;border-radius:12px;border:1px solid var(--line);overflow:hidden}
+    .project .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .25s}
+    .project:hover .thumb img{transform:scale(1.03)}
+    .project h3{margin:10px 0 6px}
+    .meta{color:var(--muted);font-size:14px;margin-bottom:8px}
+
+    /* design gallery */
+    .gallery{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr))}
+    figure{margin:0;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
+    figure img{width:100%;height:220px;object-fit:cover}
+    figure figcaption{padding:10px 12px;color:var(--muted);font-size:14px}
+
+    /* contact */
+    .contact{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr))}
+    .contact .tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+    .contact h3{margin:2px 0 8px;color:#065f46}
+    .contact a{word-break:break-all;overflow-wrap:anywhere}
+
+    footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);text-align:center}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .grid-2,.gallery,.contact{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:640px){
+      .skills,.grid-2,.gallery,.contact{grid-template-columns:1fr}
+    }
+
+    /* animation */
+    html{scroll-behavior:smooth}
+    .fade{opacity:0;transform:translateY(18px);transition:all .5s ease}
+    .fade.show{opacity:1;transform:none}
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">Kattarin</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu" id="mobileMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="logo">Kattarin<span class="dot">.</span></a>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Web</a>
+        <a href="#design">Design</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Hi, I'm Kattarin </h1>
-                    <div class="title">Frontend Developer & UI/UX Designer</div>
-                    <p>Passionate about creating beautiful, user-friendly, and functional web applications. Currently studying Engineering Industrial Information Technology at LAB University of Applied Sciences, Finland. Open for opportunities in web development, UI/UX design, and thesis collaboration.</p>
-                    <a href="#contact" class="cta-button">Get In Touch</a>
-                </div>
-                <div class="hero-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Kattarin-wbLsNog8ObNE3eCZ60FrBzaUsM78HR.png" alt="Kattarin Chaisutthisunthon">
-                </div>
-            </div>
+  <main class="wrap" id="top">
+    <!-- HERO -->
+    <section class="hero card fade" id="home">
+      <div>
+        <h1>Hi, I'm Kattarin</h1>
+        <p class="lead">Frontend & UI/UX designer who loves clean, friendly interfaces and creative branding (Canva + Procreate). I build responsive web UIs and design practical visuals for food & café businesses.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Contact me</a>
         </div>
+      </div>
+      <div class="portrait">
+        <img src="assets/Kattarin.png" alt="Kattarin portrait">
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title fade-in">About Me</h2>
-            <div class="about-content fade-in">
-                <p>I am a motivated frontend developer and UI/UX designer with experience in building responsive, accessible, and visually appealing web applications. I enjoy combining engineering knowledge with creative design thinking to deliver user-friendly digital solutions.</p>
-                <p>I am also looking for opportunities to conduct my Bachelor's thesis in collaboration with companies, especially in the field of web development, UI/UX design, or industrial automation projects.</p>
-                <div class="university-info">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LAB-logo-JN358wgFlgjoLhINAN4ogVrqOOdAbJ.png" alt="LAB University of Applied Sciences">
-                    <span>Bachelor's Degree Programme in Industrial Information Technology</span>
-                </div>
-            </div>
+    <!-- ABOUT (กลับมาแล้ว + โลโก้/คณะ) -->
+    <section class="card fade" id="about">
+      <h2>About Me</h2>
+      <p class="subtitle">I enjoy designing user journeys and translating them into simple, beautiful interfaces.</p>
+      <p>Recently I've worked on restaurant menu layouts, product posters, and branding assets using <strong>Canva</strong> and <strong>Procreate</strong>. These projects sharpen my eye for composition, typography, and color. I'm also building front-end UIs with HTML/CSS/JS and focusing on responsive, accessible design.</p>
+
+      <div class="university-info" style="display:flex;align-items:center;gap:14px;margin-top:14px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff">
+        <img src="assets/LAB-logo.png" alt="LAB University of Applied Sciences" style="height:40px"/>
+        <div>
+          <strong>LAB University of Applied Sciences</strong><br>
+          Bachelor's Degree Programme in Industrial Information Technology
         </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <div class="container">
-            <h2 class="section-title fade-in">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category fade-in">
-                    <h3>Programming & Web Development</h3>
-                    <p>HTML, CSS, JavaScript, Python</p>
-                </div>
-                <div class="skill-category fade-in">
-                    <h3>Tools & Platforms</h3>
-                    <p>Visual Studio Code, GitHub, GitLab</p>
-                </div>
-                <div class="skill-category fade-in">
-                    <h3>UI/UX Design</h3>
-                    <p>Wireframing, Prototyping, User-centered design, Responsive design</p>
-                </div>
-                <div class="skill-category fade-in">
-                    <h3>Soft Skills</h3>
-                    <p>Teamwork & Collaboration, Communication, Problem-Solving, Adaptability, Time Management, Creativity</p>
-                </div>
-                <div class="skill-category fade-in">
-                    <h3>Languages</h3>
-                    <p>Thai (Native), Chinese (Basic), English (B1), Finnish (A1.3)</p>
-                </div>
-            </div>
+    <!-- SKILLS (เพิ่ม Languages) -->
+    <section class="card fade" id="skills">
+      <h2>Skills</h2>
+      <p class="subtitle">Focused on front-end foundations, practical UI/UX, and visual design.</p>
+      <div class="skills">
+        <div class="skill">
+          <h3>Frontend</h3>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript (basics)</span>
+            <span class="tag">Responsive UI</span>
+            <span class="tag">Accessibility</span>
+          </div>
         </div>
+        <div class="skill">
+          <h3>UI / UX</h3>
+          <div class="tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Wireframes</span>
+            <span class="tag">Prototyping</span>
+            <span class="tag">User Flows</span>
+            <span class="tag">Usability</span>
+          </div>
+        </div>
+        <div class="skill">
+          <h3>Graphic & Branding</h3>
+          <div class="tags">
+            <span class="tag">Canva</span>
+            <span class="tag">Procreate</span>
+            <span class="tag">Logo Design</span>
+            <span class="tag">Menu & Posters</span>
+            <span class="tag">Social Visuals</span>
+          </div>
+        </div>
+        <div class="skill">
+          <h3>Languages</h3>
+          <div class="tags">
+            <span class="tag">Thai (Native)</span>
+            <span class="tag">English (B1)</span>
+            <span class="tag">Chinese (Basic)</span>
+            <span class="tag">Finnish (A1.3)</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="container">
-            <h2 class="section-title fade-in">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/modern-language-learning-web-application-interface.jpg-8UbG7vDK0rwrxs1MOdkO0KILqkVGkh.jpeg" alt="Language Centre Web Application">
-                    </div>
-                    <div class="project-content">
-                        <h3>Language Centre Web Application</h3>
-                        <div class="project-role">Frontend Developer & Theme/UX Designer</div>
-                        <p>A modern language learning web platform with responsive design and consistent user experience. Built with modern web technologies to provide an intuitive learning environment.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/Arch-Promchan/Language-Centre/tree/frontend" class="project-link github-link">GitHub</a>
-                            <a href="https://arch-promchan.github.io/Language-Centre/" class="project-link demo-link">Live Demo</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/modern-gym-dashboard-with-iot-data-visualization.jpg-5GZnEn0jEm5AHqzqfxQ17vbELCzHxS.jpeg" alt="Smart Gym IoT System">
-                    </div>
-                    <div class="project-content">
-                        <h3>Smart Gym IoT System</h3>
-                        <div class="project-role">Frontend Developer & UI/UX Designer</div>
-                        <p>An innovative IoT dashboard for smart gyms, featuring real-time data visualization and interactive equipment monitoring. Designed to enhance gym management and user experience.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/Puripun8900/Group-M/blob/main/README.md" class="project-link github-link">GitHub</a>
-                            <a href="https://smartgym-m.azurewebsites.net/login.html" class="project-link demo-link">Live Demo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- WEB PROJECTS (เพิ่มลิงก์ Code ทั้งสองโปรเจกต์) -->
+    <section class="card fade" id="projects">
+      <h2>Web Projects</h2>
+      <p class="subtitle">Selected academic projects demonstrating layout, theming, and UI thinking.</p>
+
+      <div class="grid grid-2">
+        <article class="project">
+          <div class="thumb">
+            <img src="assets/modern-language-learning-web-application-interface.jpg" alt="Language Centre Web Application UI screenshot">
+          </div>
+          <h3>Language Centre Web Application</h3>
+          <div class="meta">Role: Frontend + Theme/UX</div>
+          <p class="lead" style="margin:0">Responsive learning UI with consistent theme and simple flows.</p>
+          <p style="margin:8px 0 0; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn" href="https://arch-promchan.github.io/Language-Centre/" target="_blank" rel="noreferrer">Live demo</a>
+            <a class="btn" href="https://github.com/Arch-Promchan/Language-Centre/tree/frontend" target="_blank" rel="noreferrer">Code</a>
+          </p>
+        </article>
+
+        <article class="project">
+          <div class="thumb">
+            <img src="assets/modern-gym-dashboard-with-iot-data-visualization.jpg" alt="Smart Gym IoT dashboard screenshot">
+          </div>
+          <h3>Smart Gym IoT Dashboard</h3>
+          <div class="meta">Role: Frontend + UI/UX</div>
+          <p class="lead" style="margin:0">Clean dashboard visuals for equipment monitoring and status.</p>
+          <p style="margin:8px 0 0; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn" href="https://smartgym-m.azurewebsites.net/login.html" target="_blank" rel="noreferrer">Live demo</a>
+            <a class="btn" href="https://github.com/Puripun8900/Group-M/blob/main/README.md" target="_blank" rel="noreferrer">Code</a>
+          </p>
+        </article>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title fade-in">Contact Me</h2>
-            <div class="contact-content fade-in">
-                <p>I'm always open to discussing new opportunities, collaborations, or just having a chat about web development and design. Feel free to reach out!</p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>Email</h3>
-                        <a href="mailto:Kattarin.chaisutthisunthon@student.lab.fi">Kattarin.chaisutthisunthon@student.lab.fi</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- DESIGN & ILLUSTRATION -->
+    <section class="card fade" id="design">
+      <h2>Design & Branding</h2>
+      <p class="subtitle">Menu layouts, product posters, seasonal campaigns, and logos. Tools: Canva + Procreate.</p>
+
+      <div class="gallery">
+        <figure>
+          <img src="assets/my%20design%20work1.jpg" alt="Design work sample 1">
+          <figcaption>Menu / Poster</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/my%20design%20work2.jpg" alt="Design work sample 2">
+          <figcaption>Branding / Poster</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/my%20design%20work3.jpg" alt="Design work sample 3">
+          <figcaption>Recommend Menu</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/my%20design%20work4.jpg" alt="Design work sample 4">
+          <figcaption>Product Promo</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/my%20design%20work5.jpg" alt="Design work sample 5">
+          <figcaption>Festival Campaign</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/my%20design%20work6.jpg" alt="Design work sample 6">
+          <figcaption>Event Graphic</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/my%20design%20work7.jpg" alt="Design work sample 7">
+          <figcaption>Logo / Social Visual</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:10px">YouTube (Art & Design):
+        <a href="https://youtube.com/@milesmories?si=fSi0MIezRrfs9c6c" target="_blank" rel="noreferrer">@milesmories</a>
+    </p>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Kattarin Chaisutthisunthon. All rights reserved.</p>
+    <!-- CONTACT (ตัด Social ออก เหลือ Email + Location) -->
+    <section class="card fade" id="contact">
+      <h2>Contact</h2>
+      <p class="subtitle">Open to internships, part-time work, freelance projects, or collaborations.</p>
+
+      <div class="contact" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+        <div class="tile">
+          <h3>Email</h3>
+          <a href="mailto:Kattarin.chaisutthisunthon@student.lab.fi">Kattarin.chaisutthisunthon@student.lab.fi</a>
         </div>
-    </footer>
+        <div class="tile">
+          <h3>Location</h3>
+          <p style="margin:0;color:var(--muted)">Lappeenranta, Finland</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenu = document.getElementById('mobileMenu');
-        const navLinks = document.getElementById('navLinks');
+  <footer>
+    © <span id="y">2025</span> Kattarin — All rights reserved.
+  </footer>
 
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        navLinks.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                navLinks.classList.remove('active');
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Add active class to navigation links based on scroll position
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Add typing effect to hero title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Initialize typing effect when page loads
-        window.addEventListener('load', () => {
-            const heroTitle = document.querySelector('.hero-text h1');
-            const originalText = heroTitle.textContent;
-            typeWriter(heroTitle, originalText, 80);
-        });
-    </script>
+  <script>
+    // fade-in on view
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');})},{threshold:.12,rootMargin:'0px 0px -50px 0px'});
+    document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+    // year
+    document.getElementById('y').textContent=new Date().getFullYear();
+  </script>
 </body>
 </html>
