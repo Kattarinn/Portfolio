@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio of Kattarin — frontend development, UI/UX design, and graphic branding for food & café." />
   <style>
     :root{
-      --bg:#fafaf8;        /* soft paper */
+      --bg:#f5f7f2;        /* soft paper */
       --surface:#ffffff;
       --ink:#1f2937;       /* slate-800 */
       --muted:#64748b;     /* slate-500 */
@@ -20,7 +20,11 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif}
+    body{
+      margin:0;
+      background:radial-gradient(circle at top left,#ecfdf5 0,#f5f7f2 40%,#f9fafb 100%);
+      color:var(--ink);
+      font:16px/1.65 "Segoe UI",Roboto,Inter,system-ui,Arial,sans-serif}
     a{color:var(--brand);text-decoration:none}
     a:hover{text-decoration:underline}
     img{max-width:100%;display:block}
@@ -40,7 +44,11 @@
 
     /* hero */
     .hero{display:grid;gap:28px;grid-template-columns:1.15fr .85fr;align-items:center}
-    .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(18px,3.2vw,28px)}
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:clamp(18px,3.2vw,28px)}
     h1{font-size:clamp(30px,5.2vw,44px);line-height:1.1;margin:0 0 6px}
     p.lead{color:var(--muted);margin:8px 0 16px}
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
@@ -73,7 +81,18 @@
     /* design gallery */
     .gallery{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr))}
     figure{margin:0;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}
-    figure img{width:100%;height:220px;object-fit:cover}
+    /* UPDATED: normal image size + clickable */
+    figure img{
+      width:100%;
+      height:auto;
+      max-height:360px;
+      object-fit:contain;
+      cursor:pointer;
+      transition:transform .25s ease;
+    }
+    figure img:hover{
+      transform:scale(1.02);
+    }
     figure figcaption{padding:10px 12px;color:var(--muted);font-size:14px}
 
     /* contact */
@@ -129,7 +148,7 @@
       </div>
     </section>
 
-    <!-- ABOUT (กลับมาแล้ว + โลโก้/คณะ) -->
+    <!-- ABOUT (Logo Lab UAS) -->
     <section class="card fade" id="about">
       <h2>About Me</h2>
       <p class="subtitle">I enjoy designing user journeys and translating them into simple, beautiful interfaces.</p>
@@ -144,7 +163,7 @@
       </div>
     </section>
 
-    <!-- SKILLS (เพิ่ม Languages) -->
+    <!-- SKILLS (Languages) -->
     <section class="card fade" id="skills">
       <h2>Skills</h2>
       <p class="subtitle">Focused on front-end foundations, practical UI/UX, and visual design.</p>
@@ -191,7 +210,7 @@
       </div>
     </section>
 
-    <!-- WEB PROJECTS (เพิ่มลิงก์ Code ทั้งสองโปรเจกต์) -->
+    <!-- WEB PROJECTS (Code ) -->
     <section class="card fade" id="projects">
       <h2>Web Projects</h2>
       <p class="subtitle">Selected academic projects demonstrating layout, theming, and UI thinking.</p>
@@ -262,10 +281,10 @@
       </div>
       <p style="margin-top:10px">YouTube (Art & Design):
         <a href="https://youtube.com/@milesmories?si=fSi0MIezRrfs9c6c" target="_blank" rel="noreferrer">@milesmories</a>
-    </p>
+      </p>
     </section>
 
-    <!-- CONTACT (ตัด Social ออก เหลือ Email + Location) -->
+    <!-- CONTACT -->
     <section class="card fade" id="contact">
       <h2>Contact</h2>
       <p class="subtitle">Open to internships, part-time work, freelance projects, or collaborations.</p>
@@ -287,12 +306,48 @@
     © <span id="y">2025</span> Kattarin — All rights reserved.
   </footer>
 
+  <!-- LIGHTBOX MODAL FOR FULLSCREEN IMAGES -->
+  <div id="lightbox" style="
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:1000;">
+    <img id="lightbox-img" src="" alt="Full view" style="max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 0 40px rgba(0,0,0,.5)">
+  </div>
+
   <script>
     // fade-in on view
-    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');})},{threshold:.12,rootMargin:'0px 0px -50px 0px'});
+    const io=new IntersectionObserver(es=>{
+      es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');});
+    },{threshold:.12,rootMargin:'0px 0px -50px 0px'});
     document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
     // year
     document.getElementById('y').textContent=new Date().getFullYear();
+
+    // Lightbox functionality
+    const lightbox=document.getElementById('lightbox');
+    const lightboxImg=document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.gallery img').forEach(img=>{
+      img.addEventListener('click',()=>{
+        lightboxImg.src=img.src;
+        lightbox.style.display='flex';
+      });
+    });
+
+    // click anywhere on overlay to close
+    lightbox.addEventListener('click',()=>{
+      lightbox.style.display='none';
+    });
+
+    // optional: close with ESC key
+    document.addEventListener('keydown',e=>{
+      if(e.key==="Escape"){ lightbox.style.display='none'; }
+    });
   </script>
 </body>
 </html>
