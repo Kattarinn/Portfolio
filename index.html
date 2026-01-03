@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kattarin Chaisutthisunthon | Industrial IT & IoT Developer</title>
+    <meta name="description" content="Portfolio of Kattarin Chaisutthisunthon - Industrial IT & IoT Developer specializing in web development, data analysis, and IoT systems.">
+    <meta name="author" content="Kattarin Chaisutthisunthon">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Kattarin Chaisutthisunthon | Industrial IT & IoT Developer">
+    <meta property="og:description" content="Bachelor of Engineering graduate passionate about technology, web development, and data-driven solutions.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        * {
+        /* =====================
+           CSS Reset & Variables
+        ===================== */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -26,78 +38,74 @@
             --gray-50: #f9fafb;
             --gray-100: #f3f4f6;
             --gray-200: #e5e7eb;
+            --gray-400: #9ca3af;
             --gray-600: #4b5563;
             --gray-700: #374151;
             --gray-800: #1f2937;
             --gray-900: #111827;
-        }
-        /* =====================
-       Design Section
-    ===================== */
-
-    .design {
-        background: white;
-    }
-
-    .design-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 24px;
-    }
-
-    .design-card {
-        background: var(--gray-50);
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-        transition: all 0.3s ease;
-    }
-
-    .design-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 18px 40px rgba(244, 114, 182, 0.25);
-    }
-
-    .design-image {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        background: #fff;
-    }
-
-    .design-caption {
-        padding: 14px 16px;
-        text-align: center;
-        font-size: 0.9rem;
-        color: var(--gray-700);
-    }
-
-    /* Mobile */
-    @media (max-width: 480px) {
-        .design-image {
-            height: 220px;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 30px rgba(244, 114, 182, 0.1);
+            --shadow-lg: 0 20px 60px rgba(244, 114, 182, 0.2);
+            --transition: all 0.3s ease;
         }
 
-        .design-caption {
-            font-size: 0.85rem;
-            }
+        html {
+            scroll-behavior: smooth;
         }
-
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background-color: #ffffff;
             color: var(--gray-800);
             line-height: 1.6;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* =====================
+           Layout
+        ===================== */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Navigation */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--gray-600);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        /* =====================
+           Navigation
+        ===================== */
         nav {
             position: fixed;
             top: 0;
@@ -105,6 +113,7 @@
             right: 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid var(--pink-100);
         }
@@ -129,22 +138,155 @@
         .nav-links {
             display: flex;
             gap: 32px;
-            list-style: none;
         }
 
         .nav-links a {
-            text-decoration: none;
             color: var(--gray-600);
             font-weight: 500;
             font-size: 0.9rem;
-            transition: color 0.3s ease;
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
             color: var(--pink-500);
         }
 
-        /* Hero Section */
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+            color: var(--gray-700);
+        }
+
+        /* Added mobile menu panel styles */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100%;
+            background: white;
+            padding: 24px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--gray-600);
+            transition: color 0.2s ease;
+        }
+
+        .mobile-menu-close:hover {
+            color: var(--pink-500);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mobile-nav-links a {
+            display: block;
+            padding: 12px 16px;
+            color: var(--gray-700);
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            background: var(--gray-100);
+            color: var(--pink-500);
+        }
+
+        /* =====================
+           Buttons
+        ===================== */
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--pink-400);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--pink-500);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--gray-800);
+            border: 2px solid var(--pink-200);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--pink-400);
+            background: var(--pink-50);
+        }
+
+        /* =====================
+           Hero Section
+        ===================== */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -185,39 +327,7 @@
         .hero-buttons {
             display: flex;
             gap: 16px;
-        }
-
-        .btn {
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: var(--pink-400);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--pink-500);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--gray-800);
-            border: 2px solid var(--pink-200);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--pink-400);
-            background: var(--pink-50);
+            flex-wrap: wrap;
         }
 
         .hero-image {
@@ -231,30 +341,12 @@
             border-radius: 50%;
             object-fit: cover;
             border: 6px solid var(--pink-200);
-            box-shadow: 0 20px 60px rgba(244, 114, 182, 0.2);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* Section Styles */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            color: var(--gray-600);
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 60px;
-        }
-
-        /* About Section */
+        /* =====================
+           About Section
+        ===================== */
         .about {
             background: var(--pink-50);
         }
@@ -278,11 +370,27 @@
             line-height: 1.8;
         }
 
+        .languages {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .language-badge {
+            background: var(--pink-100);
+            color: var(--pink-600);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
         .education-card {
             background: white;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
         }
 
         .education-card h4 {
@@ -306,14 +414,37 @@
             display: inline-block;
             background: var(--pink-100);
             color: var(--pink-500);
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
             margin-top: 12px;
         }
 
-        /* Skills Section */
+        .key-studies {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--pink-100);
+        }
+
+        .key-studies h4 {
+            margin-bottom: 12px;
+        }
+
+        .key-studies ul {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .key-studies li {
+            margin-bottom: 6px;
+        }
+
+        /* =====================
+           Skills Section
+        ===================== */
         .skills {
             background: white;
         }
@@ -329,12 +460,12 @@
             padding: 28px;
             border-radius: 12px;
             border: 1px solid var(--pink-100);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .skill-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(244, 114, 182, 0.1);
+            box-shadow: var(--shadow-md);
             border-color: var(--pink-200);
         }
 
@@ -356,6 +487,7 @@
             align-items: center;
             justify-content: center;
             color: var(--pink-500);
+            flex-shrink: 0;
         }
 
         .skill-tags {
@@ -373,7 +505,51 @@
             border: 1px solid var(--pink-100);
         }
 
-        /* Projects Section */
+        /* =====================
+           Design Section
+        ===================== */
+        .design {
+            background: white;
+        }
+
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .design-card {
+            background: var(--gray-50);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .design-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(244, 114, 182, 0.25);
+        }
+
+        .design-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        .design-caption {
+            padding: 14px 16px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        /* =====================
+           Projects Section
+        ===================== */
         .projects {
             background: var(--pink-50);
         }
@@ -388,8 +564,8 @@
             background: white;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
         }
 
         .project-card:hover {
@@ -439,6 +615,7 @@
         .project-links {
             display: flex;
             gap: 12px;
+            flex-wrap: wrap;
         }
 
         .project-link {
@@ -446,8 +623,7 @@
             border-radius: 6px;
             font-size: 0.85rem;
             font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .project-link.demo {
@@ -468,7 +644,9 @@
             background: var(--gray-200);
         }
 
-        /* Enhanced Contact Section with beautiful design */
+        /* =====================
+           Contact Section
+        ===================== */
         .contact {
             background: linear-gradient(135deg, var(--pink-50) 0%, #ffffff 50%, var(--pink-50) 100%);
             position: relative;
@@ -485,6 +663,7 @@
             background: radial-gradient(circle, var(--pink-100) 0%, transparent 70%);
             opacity: 0.5;
             animation: pulse 15s ease-in-out infinite;
+            pointer-events: none;
         }
 
         @keyframes pulse {
@@ -543,9 +722,8 @@
             padding: 28px 20px;
             background: linear-gradient(135deg, var(--pink-50) 0%, white 100%);
             border-radius: 16px;
-            text-decoration: none;
             color: var(--gray-700);
-            transition: all 0.3s ease;
+            transition: var(--transition);
             border: 1px solid var(--pink-100);
         }
 
@@ -580,6 +758,7 @@
             color: var(--gray-800);
             font-weight: 500;
             text-align: center;
+            word-break: break-word;
         }
 
         .social-section {
@@ -608,9 +787,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
             color: var(--gray-600);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .social-link:hover {
@@ -632,7 +810,9 @@
             box-shadow: 0 15px 40px rgba(244, 114, 182, 0.3);
         }
 
-        /* Footer */
+        /* =====================
+           Footer
+        ===================== */
         footer {
             background: var(--gray-900);
             color: white;
@@ -645,26 +825,62 @@
             font-size: 0.9rem;
         }
 
-        /* Languages */
-        .languages {
+        /* =====================
+           Lightbox
+        ===================== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .lightbox:target {
             display: flex;
-            gap: 16px;
-            margin-top: 20px;
         }
 
-        .language-badge {
-            background: var(--pink-100);
-            color: var(--pink-600);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
-        /* Responsive */
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 40px;
+            color: white;
+            font-weight: bold;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* =====================
+           Responsive Design
+        ===================== */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
             }
 
             .hero .container {
@@ -704,41 +920,47 @@
             .contact .section-title {
                 font-size: 2rem;
             }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
         }
-        /* ===== Lightbox ===== */
-.lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    padding: 20px;
-}
 
-.lightbox img {
-    max-width: 95%;
-    max-height: 95%;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
 
-.lightbox:target {
-    display: flex;
-}
+            .hero-content .subtitle {
+                font-size: 1.1rem;
+            }
 
-.lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 24px;
-    font-size: 32px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
+            .section-title {
+                font-size: 1.6rem;
+            }
 
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+
+            .design-image {
+                height: 180px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-message {
+                padding: 20px 24px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -753,11 +975,38 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="mobile-menu-btn" aria-label="Toggle menu" onclick="openMobileMenu()">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
         </div>
     </nav>
 
+    <!-- Mobile Menu Panel -->
+    <div class="mobile-menu" id="mobileMenu" onclick="closeMobileMenu(event)">
+        <div class="mobile-menu-content" onclick="event.stopPropagation()">
+            <div class="mobile-menu-header">
+                <span class="logo">KC</span>
+                <button class="mobile-menu-close" aria-label="Close menu" onclick="closeMobileMenu()">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="mobile-nav-links">
+                <a href="#home" onclick="closeMobileMenu()">Home</a>
+                <a href="#about" onclick="closeMobileMenu()">About</a>
+                <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+                <a href="#design" onclick="closeMobileMenu()">Design</a>
+                <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+                <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+            </nav>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
                 <h1>Kattarin Chaisutthisunthon</h1>
@@ -765,16 +1014,15 @@
                 <p>Bachelor of Engineering graduate passionate about technology, web development, and data-driven solutions. Building accessible, pixel-perfect digital experiences for the web.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                         View Projects
                     </a>
                     <a href="#contact" class="btn btn-secondary">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                         Contact Me
                     </a>
                 </div>
             </div>
-            <!-- Updated profile picture with user's actual image -->
             <div class="hero-image">
                 <img src="assets/Kattarin.png" alt="Kattarin Chaisutthisunthon" class="profile-pic">
             </div>
@@ -805,9 +1053,9 @@
                     <p>LAB University of Applied Sciences, Finland</p>
                     <p>2023 – 2025</p>
                     <span class="gpa-badge">GPA: 4.16 / 5.00</span>
-                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--pink-100);">
-                        <h4 style="margin-bottom: 12px;">Key Studies</h4>
-                        <ul style="color: var(--gray-600); font-size: 0.9rem; padding-left: 20px;">
+                    <div class="key-studies">
+                        <h4>Key Studies</h4>
+                        <ul>
                             <li>IoT Systems and Pipeline Design</li>
                             <li>C / C++ Programming</li>
                             <li>JavaScript and Web Development</li>
@@ -829,7 +1077,7 @@
                 <div class="skill-card">
                     <h3>
                         <span class="skill-icon">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
                         </span>
                         Programming
                     </h3>
@@ -845,7 +1093,7 @@
                 <div class="skill-card">
                     <h3>
                         <span class="skill-icon">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                         </span>
                         Web Development
                     </h3>
@@ -860,7 +1108,7 @@
                 <div class="skill-card">
                     <h3>
                         <span class="skill-icon">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
                         </span>
                         IoT & Systems
                     </h3>
@@ -874,7 +1122,7 @@
                 <div class="skill-card">
                     <h3>
                         <span class="skill-icon">
-                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
                         </span>
                         Tools & Design
                     </h3>
@@ -891,88 +1139,72 @@
     </section>
 
     <!-- Design Section -->
-<section class="design" id="design">
-    <div class="container">
-        <h2 class="section-title">Design</h2>
-        <p class="section-subtitle">
-            Menu layouts, product posters, seasonal campaigns, and logo designs created using Canva and Procreate.
-        </p>
-
-        <div class="design-grid">
-            <div class="design-card">
-                <img src="assets/my design work1.jpg" alt="Menu Design" class="design-image">
-                <div class="design-caption">Menu Layout Design</div>
-            </div>
-
-            <div class="design-card">
-                <img src="assets/my design work2.jpg" alt="Product Poster" class="design-image">
-                <div class="design-caption">Product Poster Design</div>
-            </div>
-
-            <div class="design-card">
-                <img src="assets/my design work3.jpg" alt="Seasonal Campaign" class="design-image">
-                <div class="design-caption">Seasonal Campaign Visual</div>
-            </div>
-
-            <div class="design-card">
-                <img src="assets/my design work4.jpg" alt="Logo Design" class="design-image">
-                <div class="design-caption">Logo Design</div>
-            </div>
-
-            <div class="design-card">
-                <img src="assets/my design work5.jpg" alt="Branding Design" class="design-image">
-                <div class="design-caption">Branding & Social Media</div>
-            </div>
-
-            <div class="design-card">
-                <img src="assets/my design work6.jpg" alt="Creative Illustration" class="design-image">
-                <div class="design-caption">Creative Illustration</div>
-            </div>
-
-            <div class="design-card">
-                <img src="assets/my design work7.jpg" alt="Graphic Design" class="design-image">
-                <div class="design-caption">Graphic Design Concept</div>
+    <section class="design" id="design">
+        <div class="container">
+            <h2 class="section-title">Design</h2>
+            <p class="section-subtitle">Menu layouts, product posters, seasonal campaigns, and logo designs created using Canva and Procreate.</p>
+            <div class="design-grid">
+                <a href="#img1" class="design-card">
+                    <img src="assets/my design work1.jpg" alt="Menu Design" class="design-image" loading="lazy">
+                    <div class="design-caption">Menu Layout Design</div>
+                </a>
+                <a href="#img2" class="design-card">
+                    <img src="assets/my design work2.jpg" alt="Product Poster" class="design-image" loading="lazy">
+                    <div class="design-caption">Product Poster Design</div>
+                </a>
+                <a href="#img3" class="design-card">
+                    <img src="assets/my design work3.jpg" alt="Seasonal Campaign" class="design-image" loading="lazy">
+                    <div class="design-caption">Seasonal Campaign Visual</div>
+                </a>
+                <a href="#img4" class="design-card">
+                    <img src="assets/my design work4.jpg" alt="Logo Design" class="design-image" loading="lazy">
+                    <div class="design-caption">Logo Design</div>
+                </a>
+                <a href="#img5" class="design-card">
+                    <img src="assets/my design work5.jpg" alt="Branding Design" class="design-image" loading="lazy">
+                    <div class="design-caption">Branding & Social Media</div>
+                </a>
+                <a href="#img6" class="design-card">
+                    <img src="assets/my design work6.jpg" alt="Creative Illustration" class="design-image" loading="lazy">
+                    <div class="design-caption">Creative Illustration</div>
+                </a>
+                <a href="#img7" class="design-card">
+                    <img src="assets/my design work7.jpg" alt="Graphic Design" class="design-image" loading="lazy">
+                    <div class="design-caption">Graphic Design Concept</div>
+                </a>
             </div>
         </div>
+    </section>
+
+    <!-- Lightboxes -->
+    <div id="img1" class="lightbox">
+        <a href="#design" class="lightbox-close" aria-label="Close">×</a>
+        <img src="assets/my design work1.jpg" alt="Menu Design Full View">
     </div>
-    <!-- Lightbox -->
-<div id="img1" class="lightbox">
-    <a href="#design" class="lightbox-close">×</a>
-    <img src="assets/my-design-work-1.jpg">
-</div>
-
-<div id="img2" class="lightbox">
-    <a href="#design" class="lightbox-close">×</a>
-    <img src="assets/my-design-work-2.jpg">
-</div>
-
-<div id="img3" class="lightbox">
-    <a href="#design" class="lightbox-close">×</a>
-    <img src="assets/my-design-work-3.jpg">
-</div>
-
-<div id="img4" class="lightbox">
-    <a href="#design" class="lightbox-close">×</a>
-    <img src="assets/my-design-work-4.jpg">
-</div>
-
-<div id="img5" class="lightbox">
-    <a href="#design" class="lightbox-close">×</a>
-    <img src="assets/my-design-work-5.jpg">
-</div>
-
-<div id="img6" class="lightbox">
-    <a href="#design" class="lightbox-close">×</a>
-    <img src="assets/my-design-work-6.jpg">
-</div>
-
-<div id="img7" class="lightbox">
-    <a href="#design" class="lightbox-close">×</a>
-    <img src="assets/my-design-work-7.jpg">
-</div>
-
-</section>
-
+    <div id="img2" class="lightbox">
+        <a href="#design" class="lightbox-close" aria-label="Close">×</a>
+        <img src="assets/my design work2.jpg" alt="Product Poster Full View">
+    </div>
+    <div id="img3" class="lightbox">
+        <a href="#design" class="lightbox-close" aria-label="Close">×</a>
+        <img src="assets/my design work3.jpg" alt="Seasonal Campaign Full View">
+    </div>
+    <div id="img4" class="lightbox">
+        <a href="#design" class="lightbox-close" aria-label="Close">×</a>
+        <img src="assets/my design work4.jpg" alt="Logo Design Full View">
+    </div>
+    <div id="img5" class="lightbox">
+        <a href="#design" class="lightbox-close" aria-label="Close">×</a>
+        <img src="assets/my design work5.jpg" alt="Branding Full View">
+    </div>
+    <div id="img6" class="lightbox">
+        <a href="#design" class="lightbox-close" aria-label="Close">×</a>
+        <img src="assets/my design work6.jpg" alt="Illustration Full View">
+    </div>
+    <div id="img7" class="lightbox">
+        <a href="#design" class="lightbox-close" aria-label="Close">×</a>
+        <img src="assets/my design work7.jpg" alt="Graphic Design Full View">
+    </div>
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
@@ -980,9 +1212,8 @@
             <h2 class="section-title">Featured Projects</h2>
             <p class="section-subtitle">A selection of my recent work and personal projects</p>
             <div class="projects-grid">
-                <!-- Project 1 - Added generated project image -->
-                <div class="project-card">
-                    <img src="assets/modern-language-learning-web-application-interface.jpg" alt="Language Centre Web Application" class="project-image">
+                <article class="project-card">
+                    <img src="assets/modern-language-learning-web-application-interface.jpg" alt="Language Centre Web Application" class="project-image" loading="lazy">
                     <div class="project-content">
                         <h3>Language Centre Web Application</h3>
                         <p>Responsive learning UI with consistent theme and simple user flows. Frontend development with focus on Theme/UX design.</p>
@@ -993,15 +1224,14 @@
                             <span class="project-tag">Responsive UI</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://arch-promchan.github.io/Language-Centre/" target="_blank" class="project-link demo">Live Demo</a>
-                            <a href="https://github.com/Arch-Promchan/Language-Centre/tree/frontend" target="_blank" class="project-link code">View Code</a>
+                            <a href="https://arch-promchan.github.io/Language-Centre/" target="_blank" rel="noopener noreferrer" class="project-link demo">Live Demo</a>
+                            <a href="https://github.com/Arch-Promchan/Language-Centre/tree/frontend" target="_blank" rel="noopener noreferrer" class="project-link code">View Code</a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Project 2 - Added generated project image -->
-                <div class="project-card">
-                    <img src="assets/modern-gym-dashboard-with-iot-data-visualization.jpg" alt="Smart Gym IoT Dashboard" class="project-image">
+                <article class="project-card">
+                    <img src="assets/modern-gym-dashboard-with-iot-data-visualization.jpg" alt="Smart Gym IoT Dashboard" class="project-image" loading="lazy">
                     <div class="project-content">
                         <h3>Smart Gym IoT Dashboard</h3>
                         <p>Clean dashboard visuals for equipment monitoring and status. Frontend + UI/UX development with Azure deployment.</p>
@@ -1012,15 +1242,14 @@
                             <span class="project-tag">Azure</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://smartgym-m.azurewebsites.net/login.html" target="_blank" class="project-link demo">Live Demo</a>
-                            <a href="https://github.com/Puripun8900/Group-M/tree/main" target="_blank" class="project-link code">View Code</a>
+                            <a href="https://smartgym-m.azurewebsites.net/login.html" target="_blank" rel="noopener noreferrer" class="project-link demo">Live Demo</a>
+                            <a href="https://github.com/Puripun8900/Group-M/tree/main" target="_blank" rel="noopener noreferrer" class="project-link code">View Code</a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <!-- Project 3 - Added generated project image -->
-                <div class="project-card">
-                    <img src="assets/OEE.png" alt="OEE Calculator for SMEs" class="project-image">
+                <article class="project-card">
+                    <img src="assets/OEE.png" alt="OEE Calculator for SMEs" class="project-image" loading="lazy">
                     <div class="project-content">
                         <h3>OEE Calculator for SMEs</h3>
                         <p>From thesis project: Synthetic Data-Based OEE Evaluation in a Matcha Manufacturing SME. Performance analysis tool.</p>
@@ -1031,16 +1260,16 @@
                             <span class="project-tag">Thesis</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://kattarinn.github.io/OEE/" target="_blank" class="project-link demo">Live Demo</a>
-                            <a href="https://github.com/Kattarinn/OEE" target="_blank" class="project-link code">View Code</a>
+                            <a href="https://kattarinn.github.io/OEE/" target="_blank" rel="noopener noreferrer" class="project-link demo">Live Demo</a>
+                            <a href="https://github.com/Kattarinn/OEE" target="_blank" rel="noopener noreferrer" class="project-link code">View Code</a>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section - Completely redesigned for more attention -->
+    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
@@ -1051,21 +1280,21 @@
                     <div class="contact-grid">
                         <a href="mailto:chaisutthisunthon.k@gmail.com" class="contact-item">
                             <div class="contact-item-icon">
-                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             </div>
                             <span class="contact-item-label">Email</span>
                             <span class="contact-item-value">chaisutthisunthon.k@gmail.com</span>
                         </a>
                         <a href="tel:+358417237134" class="contact-item">
                             <div class="contact-item-icon">
-                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                             </div>
                             <span class="contact-item-label">Phone</span>
                             <span class="contact-item-value">+358 41 723 7134</span>
                         </a>
-                        <div class="contact-item" style="cursor: default;">
+                        <div class="contact-item">
                             <div class="contact-item-icon">
-                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
                             </div>
                             <span class="contact-item-label">Location</span>
                             <span class="contact-item-value">Vantaa, Finland</span>
@@ -1075,13 +1304,13 @@
                     <div class="social-section">
                         <p>Connect with me on social media</p>
                         <div class="social-links">
-                            <a href="https://github.com/Kattarinn" target="_blank" class="social-link" title="GitHub">
+                            <a href="https://github.com/Kattarinn" target="_blank" rel="noopener noreferrer" class="social-link" title="GitHub" aria-label="GitHub Profile">
                                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                             </a>
-                            <a href="https://www.linkedin.com/in/kattarin-chaisutthisunthon-201a9a3a1/" target="_blank" class="social-link" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/kattarin-chaisutthisunthon-201a9a3a1/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn" aria-label="LinkedIn Profile">
                                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
-                            <a href="https://www.youtube.com/@milesmories" target="_blank" class="social-link" title="YouTube">
+                            <a href="https://www.youtube.com/@milesmories" target="_blank" rel="noopener noreferrer" class="social-link" title="YouTube" aria-label="YouTube Channel">
                                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
                             </a>
                         </div>
@@ -1089,7 +1318,7 @@
                 </div>
 
                 <div class="cta-message">
-                    Let's create something amazing together!
+                    ✨ Let's create something amazing together!
                 </div>
             </div>
         </div>
@@ -1103,18 +1332,22 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
         });
     </script>
 </body>
