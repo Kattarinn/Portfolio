@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -59,9 +60,9 @@
 
     .design-image {
         width: 100%;
-        height: 260px;
-        object-fit: cover;
-        display: block;
+        height: auto;
+        object-fit: contain;
+        background: #fff;
     }
 
     .design-caption {
@@ -704,6 +705,40 @@
                 font-size: 2rem;
             }
         }
+        /* ===== Lightbox ===== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.lightbox:target {
+    display: flex;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-size: 32px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
     </style>
 </head>
 <body>
@@ -900,6 +935,42 @@
             </div>
         </div>
     </div>
+    <!-- Lightbox -->
+<div id="img1" class="lightbox">
+    <a href="#design" class="lightbox-close">×</a>
+    <img src="assets/my-design-work-1.jpg">
+</div>
+
+<div id="img2" class="lightbox">
+    <a href="#design" class="lightbox-close">×</a>
+    <img src="assets/my-design-work-2.jpg">
+</div>
+
+<div id="img3" class="lightbox">
+    <a href="#design" class="lightbox-close">×</a>
+    <img src="assets/my-design-work-3.jpg">
+</div>
+
+<div id="img4" class="lightbox">
+    <a href="#design" class="lightbox-close">×</a>
+    <img src="assets/my-design-work-4.jpg">
+</div>
+
+<div id="img5" class="lightbox">
+    <a href="#design" class="lightbox-close">×</a>
+    <img src="assets/my-design-work-5.jpg">
+</div>
+
+<div id="img6" class="lightbox">
+    <a href="#design" class="lightbox-close">×</a>
+    <img src="assets/my-design-work-6.jpg">
+</div>
+
+<div id="img7" class="lightbox">
+    <a href="#design" class="lightbox-close">×</a>
+    <img src="assets/my-design-work-7.jpg">
+</div>
+
 </section>
 
 
